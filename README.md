@@ -1,362 +1,602 @@
-🚀 InternAI Radar
-AI-Powered Internship Intelligence, Early-Alert & Application Management Platform
+# 🚀 InternAI Radar
 
-Discover internships early. Understand them deeply. Find your fit. Apply faster. Reach out smarter. Track everything.
+### AI-Powered Internship Intelligence, Early-Alert & Application Management Platform
 
-InternAI Radar is a production-oriented internship intelligence platform designed for technical students who want to discover relevant internship opportunities early, understand job requirements using AI, receive personalized recommendations, and manage the entire application and outreach journey from one place.
+> **Discover internships early. Understand them deeply. Find your fit. Apply faster. Reach out smarter. Track everything.**
+
+---
+
+## 📌 Overview
+
+**InternAI Radar** is a production-oriented internship intelligence platform designed for technical students who want to:
+
+* Discover relevant internship opportunities early
+* Understand job requirements using AI
+* Evaluate personal eligibility
+* Receive personalized recommendations
+* Identify skill gaps
+* Apply through the original application source
+* Track applications from one place
+* Analyze application performance
+* Eventually use legitimate contact intelligence for personalized outreach
 
 Instead of being just another internship listing platform, InternAI Radar focuses on the complete internship workflow:
 
-Discover → Analyze → Match → Alert → Apply → Track → (Later) Cold Outreach → Improve
+```text
+Discover
+   ↓
+Analyze
+   ↓
+Match
+   ↓
+Alert
+   ↓
+Apply
+   ↓
+Track
+   ↓
+Cold Outreach (Later)
+   ↓
+Improve
+```
 
-📌 Table of Contents
-Overview
-Problem
-Solution
-Core Workflow
-Key Features
-Build Scope: MVP vs Advanced
-What Makes InternAI Radar Different
-System Architecture
-Project Structure
-Technology Stack
-Internship Ingestion Pipeline
-Data Source Compliance
-AI Intelligence Layer
-Matching Engine
-Priority & Early-Alert System
-Application Tracking
-Contact Intelligence (Phase 2 Feature)
-Cold Outreach
-Resume Intelligence
-Notifications
-Security & Responsible Automation
-Testing
-Documentation
-Local Development
-Environment Variables
-Docker
-Database & Migrations
-Background Processing
-API
-Deployment
-CI/CD
-Development Roadmap
-Engineering Principles
-Contributing
-Security
-License
-🎯 Overview
+---
 
-InternAI Radar is an AI-powered internship intelligence and application management system.
+# 📑 Table of Contents
 
-The platform is designed around a simple idea:
+* [Overview](#-overview)
+* [Problem](#-problem)
+* [Solution](#-solution)
+* [Core Workflow](#-core-workflow)
+* [Key Features](#-key-features)
+* [Build Scope: MVP vs Advanced](#-build-scope-mvp-vs-advanced)
+* [Priority & Early-Alert System](#-priority--early-alert-system)
+* [AI Intelligence Layer](#-ai-intelligence-layer)
+* [Matching Engine](#-matching-engine)
+* [Match Explanation](#-match-explanation)
+* [Resume Intelligence](#-resume-intelligence)
+* [Skill-Gap Analysis](#-skill-gap-analysis)
+* [Application Tracking](#-application-tracking)
+* [Contact Intelligence](#-contact-intelligence)
+* [Cold Outreach](#-cold-outreach)
+* [Responsible Contact Intelligence](#-responsible-contact-intelligence)
+* [Notifications](#-notifications)
+* [System Architecture](#-system-architecture)
+* [Project Structure](#-project-structure)
+* [Technology Stack](#-technology-stack)
+* [Internship Ingestion Pipeline](#-internship-ingestion-pipeline)
+* [Data Source Compliance](#-data-source-compliance)
+* [Deduplication](#-deduplication)
+* [Database](#-database)
+* [Background Processing](#-background-processing)
+* [Security](#-security--responsible-automation)
+* [Testing](#-testing)
+* [Documentation](#-documentation)
+* [Local Development](#-local-development)
+* [Environment Variables](#-environment-variables)
+* [Docker](#-docker)
+* [Database & Migrations](#-database--migrations)
+* [API](#-api)
+* [Analytics](#-analytics)
+* [Source Health](#-source-health)
+* [Deployment](#-deployment)
+* [CI/CD](#-cicd)
+* [Development Roadmap](#️-development-roadmap)
+* [Recommended MVP](#-recommended-mvp)
+* [Engineering Principles](#-engineering-principles)
+* [Why InternAI Radar?](#-why-internai-radar)
+* [Project Status](#-project-status)
+* [Contributing](#-contributing)
+* [Security](#-security)
+* [License](#-license)
+* [Author](#️-author)
+* [Project Vision](#-project-vision)
+* [Future Roadmap](#-future-roadmap)
 
-The earlier a student discovers a relevant opportunity and understands how well they fit, the better their chance of applying strategically.
+---
 
-The system collects internship opportunities from supported sources, normalizes and validates them, removes duplicates, analyzes their requirements, evaluates user eligibility, calculates a personalized match score, assigns a priority score, and sends relevant alerts.
+# ❗ Problem
 
-Once an opportunity is discovered, the user can:
+Students searching for internships commonly face several problems.
 
-Understand the role
-See required skills
-Check eligibility
-View match score
-Identify skill gaps
-Open the original application page
-Save the opportunity
-Track the application
-(Later phase) Find legitimate professional contacts where available
-(Later phase) Generate a personalized cold-email draft
-(Later phase) Track outreach and follow-ups
-Analyze application performance
-❗ Problem
-
-Students searching for internships commonly face several problems:
-
-1. Information fragmentation
+## 1. Information Fragmentation
 
 Internships are distributed across:
 
-Company career pages
-Job platforms
-University portals
-Startup websites
-Internship boards
-Other supported sources
+* Company career pages
+* Job platforms
+* University portals
+* Startup websites
+* Internship boards
+* Other supported sources
 
-Students have to repeatedly search multiple places.
+Students have to repeatedly search multiple places to find opportunities.
 
-2. Late discovery
+---
 
-Many students discover internships after:
+## 2. Late Discovery
 
-The application has been open for days
-The position has already received many applications
-The deadline is approaching
-3. Poor understanding of job requirements
+Many students discover internships only after:
 
-A job description may contain:
+* The application has already been open for days
+* The position has received many applications
+* The deadline is approaching
+* The opportunity has already become highly competitive
 
-Required skills
-Preferred skills
-Eligibility requirements
-Experience requirements
-Location requirements
-Education requirements
+InternAI Radar focuses on **early internship intelligence** rather than simply maintaining a list of existing opportunities.
 
-Students often struggle to determine what actually matters.
+---
 
-4. No personalized matching
+## 3. Poor Understanding of Job Requirements
 
-Most platforms show:
+A typical job description may contain:
 
-"Here are some internships."
+* Required skills
+* Preferred skills
+* Eligibility requirements
+* Experience requirements
+* Location requirements
+* Education requirements
+* Responsibilities
+* Technology requirements
+
+Students often struggle to determine what actually matters for the role.
+
+---
+
+## 4. No Personalized Matching
+
+Most internship platforms essentially say:
+
+> **"Here are some internships."**
 
 InternAI Radar aims to answer:
 
-"Which internships are actually relevant to YOU?"
+> **"Which internships are actually relevant to YOU?"**
 
-5. Application management becomes messy
+The platform compares internship requirements against the user's:
+
+* Skills
+* Resume
+* Education
+* Experience
+* Location
+* Preferences
+* Eligibility
+
+---
+
+## 5. Application Management Becomes Messy
 
 Students may apply to dozens of opportunities and lose track of:
 
-Application status
-Deadlines
-Interview stages
-Follow-ups
-Contacts
-Responses
-6. Cold outreach is difficult
+* Application status
+* Deadlines
+* Interview stages
+* Follow-ups
+* Contacts
+* Responses
+* Notes
+
+InternAI Radar provides a centralized application-tracking system.
+
+---
+
+## 6. Cold Outreach Is Difficult
 
 Students often don't know:
 
-Who to contact
-Whether a contact is publicly available
-How to personalize an email
-When to follow up
-Which opportunities deserve outreach
-💡 Solution
+* Who to contact
+* Whether a contact is publicly available
+* How to personalize an email
+* When to follow up
+* Which opportunities deserve outreach
 
-InternAI Radar combines internship discovery, AI analysis, personalized matching, early alerts, and application management into a single platform — with contact intelligence and cold outreach layered on once the core loop is proven.
+Contact Intelligence and Cold Outreach are therefore planned as **Tier 2 features**, after the core platform is reliable.
+
+---
+
+# 💡 Solution
+
+InternAI Radar combines:
+
+* Internship discovery
+* Opportunity normalization
+* Validation
+* Deduplication
+* AI analysis
+* Personalized matching
+* Early alerts
+* Application management
+* Analytics
+* Responsible contact intelligence
+
+into a single platform.
 
 The central workflow is:
 
-text
-                    ┌─────────────────────┐
-                    │    JOB SOURCES      │
-                    └──────────┬──────────┘
-                               │
-                               ▼
-                    ┌─────────────────────┐
-                    │     COLLECTOR       │
-                    └──────────┬──────────┘
-                               │
-                               ▼
-                    ┌─────────────────────┐
-                    │    NORMALIZER       │
-                    └──────────┬──────────┘
-                               │
-                               ▼
-                    ┌─────────────────────┐
-                    │     VALIDATOR       │
-                    └──────────┬──────────┘
-                               │
-                               ▼
-                    ┌─────────────────────┐
-                    │   DEDUPLICATION     │
-                    └──────────┬──────────┘
-                               │
-                               ▼
-                    ┌─────────────────────┐
-                    │    MATCHING ENGINE  │  (rule-based first; AI-assisted later)
-                    └──────────┬──────────┘
-                               │
-                               ▼
-                    ┌─────────────────────┐
-                    │      DATABASE       │
-                    └──────────┬──────────┘
-                               │
-                               ▼
-                    ┌─────────────────────┐
-                    │ NOTIFICATION ENGINE │  (email first; others later)
-                    └──────────┬──────────┘
-                               │
-                               ▼
-                           👤 USER
-                               │
-             ┌─────────────────┼─────────────────┐
-             ▼                 ▼                 ▼
-         APPLY NOW        SAVE/TRACK     CONTACT INTEL *
-             │                                   │
-             ▼                                   ▼
-      Original Source                    Cold Email Draft *
-             │                                   │
-             └─────────────────┬─────────────────┘
-                               ▼
-                     APPLICATION TRACKER
+```text
+                     ┌─────────────────────┐
+                     │    JOB SOURCES      │
+                     └──────────┬──────────┘
+                                │
+                                ▼
+                     ┌─────────────────────┐
+                     │     COLLECTOR       │
+                     └──────────┬──────────┘
+                                │
+                                ▼
+                     ┌─────────────────────┐
+                     │    NORMALIZER       │
+                     └──────────┬──────────┘
+                                │
+                                ▼
+                     ┌─────────────────────┐
+                     │     VALIDATOR       │
+                     └──────────┬──────────┘
+                                │
+                                ▼
+                     ┌─────────────────────┐
+                     │   DEDUPLICATION     │
+                     └──────────┬──────────┘
+                                │
+                                ▼
+                     ┌─────────────────────┐
+                     │  MATCHING ENGINE    │
+                     │ Rule-based first    │
+                     │ AI-assisted later   │
+                     └──────────┬──────────┘
+                                │
+                                ▼
+                     ┌─────────────────────┐
+                     │      DATABASE       │
+                     └──────────┬──────────┘
+                                │
+                                ▼
+                     ┌─────────────────────┐
+                     │ NOTIFICATION ENGINE │
+                     │ Email first         │
+                     │ Others later        │
+                     └──────────┬──────────┘
+                                │
+                                ▼
+                              👤 USER
+                                │
+                ┌───────────────┼────────────────┐
+                ▼               ▼                ▼
+            APPLY NOW      SAVE / TRACK    CONTACT INTEL *
+                │                                │
+                ▼                                ▼
+        Original Source                   Cold Email Draft *
+                │                                │
+                └────────────────┬───────────────┘
+                                 ▼
+                         APPLICATION TRACKER
 
-  * Contact Intelligence & Cold Outreach are added after the
-    core discovery → match → track loop is working end-to-end.
-🔄 Core Workflow
-Discover
+* Contact Intelligence & Cold Outreach are added after the
+  core discovery → match → track loop is working end-to-end.
+```
 
-Collect internship opportunities from supported, permitted sources.
+---
 
-Analyze
+# 🔄 Core Workflow
 
-Use rule-based logic first (and AI later) to understand:
+## 1. Discover
 
-Role
-Skills
-Requirements
-Eligibility
-Experience
-Location
-Deadline
-Responsibilities
-Match
+Collect internship opportunities from supported and permitted sources.
+
+---
+
+## 2. Analyze
+
+Understand important information from the opportunity.
+
+The system analyzes:
+
+* Role
+* Skills
+* Requirements
+* Eligibility
+* Experience
+* Location
+* Deadline
+* Responsibilities
+
+Rule-based processing comes first. AI analysis is introduced later.
+
+---
+
+## 3. Match
 
 Compare the opportunity against the user's:
 
-Skills
-Resume
-Education
-Experience
-Preferences
-Eligibility
-Alert
+* Skills
+* Resume
+* Education
+* Experience
+* Preferences
+* Eligibility
+
+---
+
+## 4. Alert
 
 Prioritize important opportunities and notify the user.
 
-Apply
+---
 
-Open the original application source instead of hiding the application destination behind a fake workflow.
+## 5. Apply
 
-Track
-text
+Open the **original application source**.
+
+InternAI Radar does not hide the application destination behind a fake internal workflow.
+
+---
+
+## 6. Track
+
+The application lifecycle can follow:
+
+```text
 Opportunity Found
         ↓
 Saved
         ↓
 Applied
         ↓
+Assessment
+        ↓
 Interview
         ↓
 Offer / Rejected
-Cold Outreach (added later, once contact data is real and reliable)
+```
 
-Where legitimate professional contact information is available, help the user prepare personalized outreach.
+Additional outreach stages are introduced later.
 
-Improve
+---
 
-Use application analytics and skill-gap insights to improve future applications.
+## 7. Cold Outreach — Later
 
-✨ Key Features
-🔎 Internship Discovery
-Multi-source internship ingestion (starting with 2–3 real sources)
-Source adapters
-Opportunity normalization
-Opportunity validation
-Duplicate detection (exact-match first, fuzzy/semantic later)
-Source attribution
-Original application URLs
-Discovery timestamps
-Processing timestamps
-🎯 Personalized Matching
+When legitimate professional contact information is available, the system can help the user prepare personalized outreach.
 
-Each internship receives a personalized match score based on multiple dimensions. This starts as transparent weighted scoring — not a black-box ML model — because that's what's honestly buildable and explainable at this stage.
+---
 
-Current conceptual weighting:
+## 8. Improve
 
-Factor	Weight
-Skills	35%
-Role	20%
-Eligibility	15%
-Education	10%
-Location	10%
-Experience	5%
-Preferences	5%
+Use:
 
-Weights are configurable, not fixed.
+* Application analytics
+* Skill-gap insights
+* Opportunity data
+* Application outcomes
+
+to improve future applications.
+
+---
+
+# ✨ Key Features
+
+## 🔎 Internship Discovery
+
+Planned Tier 1 capabilities:
+
+* Multi-source internship ingestion
+* Source adapters
+* Opportunity normalization
+* Opportunity validation
+* Duplicate detection
+* Source attribution
+* Original application URLs
+* Discovery timestamps
+* Processing timestamps
+
+The initial implementation targets **2–3 real sources**.
+
+---
+
+# 🎯 Personalized Matching
+
+Each internship receives a personalized match score.
+
+The first implementation uses **transparent weighted scoring** instead of a black-box ML model.
+
+### Conceptual Weighting
+
+| Factor      | Weight |
+| ----------- | -----: |
+| Skills      |    35% |
+| Role        |    20% |
+| Eligibility |    15% |
+| Education   |    10% |
+| Location    |    10% |
+| Experience  |     5% |
+| Preferences |     5% |
+
+> Weights are configurable rather than permanently fixed.
 
 The goal is not simply:
 
-"Is this internship popular?"
+> **"Is this internship popular?"**
 
 but:
 
-"How relevant is this internship to this particular student?"
+> **"How relevant is this internship to this particular student?"**
 
-🤖 AI Job Analysis (Advanced phase)
+---
 
-Once the core loop works, AI analyzes internship descriptions and extracts:
+# 🤖 AI Job Analysis
 
-Required vs. preferred skills
-Responsibilities
-Education/experience requirements
-Eligibility
-Technology stack
-Important keywords
-🧭 Build Scope: MVP vs Advanced
+**Tier 2 / Advanced Feature**
 
-To keep this honest and shippable, the project is split into two tiers:
+Once the core system works reliably, AI can analyze internship descriptions and extract:
 
-Tier 1 — MVP (build first, fully working)
-Auth (register/login/logout, hashed passwords)
-Basic profile (education, skills, target roles, location)
-Resume upload + basic parsing (regex/NLP section detection — no LLM yet)
-2–3 real ingestion sources (public ATS endpoints), exact-match deduplication
-Rule-based, explainable matching engine
-Opportunity dashboard (search/filter/sort/pagination)
-Application tracker (Saved → Applied → Interview → Offer/Rejected)
-One notification channel: email
-A scheduled script (cron) running the ingestion pipeline — Redis/Celery only if actually needed
-Core unit + E2E test coverage
-Real deployment (frontend + backend + managed Postgres)
-Tier 2 — Advanced (added only after Tier 1 is deployed, tested, and honest)
-Additional sources + fuzzy/semantic deduplication + source health monitoring
-LLM-based job/resume analysis with a small manual evaluation set
-Priority engine (separate from match score)
-Skill-gap / market intelligence analytics
-Additional notification channels (Telegram, push)
-Watchlists & saved searches
-Detection-latency measurement
-Contact Intelligence & Cold Outreach (see below)
-Security hardening & performance passes
-Resume optimization suggestions
+* Required vs preferred skills
+* Responsibilities
+* Education requirements
+* Experience requirements
+* Eligibility
+* Technology stack
+* Important keywords
 
-This mirrors the roadmap further down — no phase is skipped, but nothing is claimed as done before it's real.
+AI is introduced only after the deterministic core workflow is established.
 
-⚡ Priority & Early-Alert System
+---
 
-InternAI Radar is designed around early internship intelligence.
+# 🧭 Build Scope: MVP vs Advanced
 
-The system maintains important timestamps such as:
+To keep the project honest and shippable, development is divided into two tiers.
 
-text
+## Tier 1 — MVP
+
+The MVP is designed to be fully working and deployable.
+
+### Authentication
+
+* Register
+* Login
+* Logout
+* Hashed passwords
+
+### User Profile
+
+* Education
+* Skills
+* Target roles
+* Location
+
+### Resume
+
+* Resume upload
+* Basic parsing
+* Regex/NLP section detection
+* Deterministic skill extraction
+* No LLM required initially
+
+### Internship Ingestion
+
+* 2–3 real sources
+* Public permitted ATS endpoints
+* Exact-match deduplication
+
+### Matching
+
+* Rule-based scoring
+* Explainable match results
+
+### Dashboard
+
+* Search
+* Filtering
+* Sorting
+* Pagination
+
+### Application Tracking
+
+```text
+Saved
+  ↓
+Applied
+  ↓
+Interview
+  ↓
+Offer / Rejected
+```
+
+### Notifications
+
+* Email notification channel
+
+### Background Processing
+
+* Scheduled ingestion using cron/scheduled scripts
+
+Redis/Celery are introduced only if actual scale requires them.
+
+### Testing
+
+* Unit tests
+* API tests
+* Core E2E coverage
+
+### Deployment
+
+* Frontend deployment
+* Backend deployment
+* Managed PostgreSQL
+
+---
+
+## Tier 2 — Advanced
+
+Tier 2 starts only after Tier 1 is:
+
+* Built
+* Tested
+* Deployed
+* Working end-to-end
+
+Planned additions include:
+
+* Additional internship sources
+* Fuzzy deduplication
+* Semantic deduplication
+* Source health monitoring
+* LLM-based job analysis
+* LLM-based resume analysis
+* Priority engine
+* Skill-gap analytics
+* Market intelligence
+* Telegram notifications
+* Push notifications
+* Watchlists
+* Saved searches
+* Detection-latency measurement
+* Contact Intelligence
+* Cold Outreach
+* Security hardening
+* Performance optimization
+* Resume optimization suggestions
+
+---
+
+# ⚡ Priority & Early-Alert System
+
+InternAI Radar is designed around **early internship intelligence**.
+
+The system maintains timestamps such as:
+
+```text
 posted_at
 discovered_at
 processed_at
 notified_at
+```
 
-These timestamps allow the platform to reason about how quickly an opportunity moved through the pipeline.
+These timestamps allow the system to reason about how quickly an opportunity moves through the pipeline.
 
-Important design principle
+## Important Principle
 
-The platform should never claim an opportunity is "real-time" unless the underlying source actually supports real-time updates, and detection-latency numbers are only published once they've actually been measured.
+The platform should **never claim that an opportunity is "real-time" unless the underlying source actually supports real-time updates**.
 
-Instead, the system can communicate freshness using measurable information such as:
+Detection-latency numbers are published only after they have been measured.
 
-text
-Posted 2 hours ago
-Discovered 8 minutes ago
-Processed 3 minutes ago
-🧠 AI Intelligence Layer (Advanced / Tier 2)
+Instead, the platform can communicate freshness using measurable information:
 
-The AI layer is organized into specialized modules, scaffolded now but implemented in Tier 2:
+```text
+Posted      → 2 hours ago
+Discovered  → 8 minutes ago
+Processed   → 3 minutes ago
+```
 
-text
+---
+
+# 🧠 AI Intelligence Layer
+
+**Advanced / Tier 2**
+
+The AI layer is organized into specialized modules:
+
+```text
 backend/app/ai/
 
 ├── providers/
@@ -368,35 +608,54 @@ backend/app/ai/
 ├── career_assistant/
 ├── contacts/
 └── evaluation/
-Planned AI capabilities (Tier 2):
-Resume analysis & skill extraction
-Job analysis & skill extraction
-Semantic matching & match explanation
-Skill-gap analysis & learning recommendations
-Cover-letter generation
-Career assistant
-Cold-email drafting
-AI evaluation (small manual eval sets — accuracy is only ever claimed once measured)
-🎯 Matching Engine
+```
 
-The matching engine starts as deterministic rule-based scoring (Tier 1) and later adds AI-assisted semantic understanding (Tier 2).
+## Planned AI Capabilities
 
-text
-User Profile
-     │
-     ├── Skills
-     ├── Education
-     ├── Experience
-     ├── Location
-     └── Preferences
-             │
-             ▼
-       Matching Engine
+* Resume analysis
+* Skill extraction
+* Job analysis
+* Job skill extraction
+* Semantic matching
+* Match explanations
+* Skill-gap analysis
+* Learning recommendations
+* Cover-letter generation
+* Career assistant
+* Cold-email drafting
+* AI evaluation
+
+AI accuracy claims will only be made after evaluation against a small manual evaluation set.
+
+---
+
+# 🎯 Matching Engine
+
+The matching engine begins with deterministic rule-based scoring.
+
+Later, semantic AI matching can be added.
+
+```text
+                    User Profile
+                         │
+            ┌────────────┼────────────┐
+            │            │            │
+          Skills     Education    Experience
+            │
+         Location
+            │
+       Preferences
+            │
+            ▼
+     ┌───────────────┐
+     │    Matching   │
+     │     Engine    │
+     └───────┬───────┘
              │
        ┌─────┴─────┐
        ▼           ▼
  Rule Matching   AI Matching
-   (Tier 1)       (Tier 2)
+   Tier 1          Tier 2
        │           │
        └─────┬─────┘
              ▼
@@ -404,19 +663,25 @@ User Profile
              │
              ▼
      Match Explanation
+```
 
-Users should be able to understand why they received a particular match score — from Day 1, not just once AI is added.
+Users should be able to understand **why** they received a particular score.
 
-📊 Match Explanation
+This explainability exists from Day 1 rather than being added only when AI arrives.
 
-Instead of displaying only:
+---
 
-text
+# 📊 Match Explanation
+
+Instead of showing only:
+
+```text
 Match: 87%
+```
 
-InternAI Radar provides meaningful reasoning:
+InternAI Radar aims to provide meaningful reasoning:
 
-text
+```text
 87% Match
 
 Strong matches:
@@ -436,23 +701,35 @@ Eligibility:
 ✓ Education requirement
 ✓ Experience requirement
 ✓ Location preference
+```
 
-This makes the recommendation explainable rather than a black box — true even for the Tier 1 rule-based version.
+This makes recommendations explainable rather than black-box.
 
-📄 Resume Intelligence
+---
 
-Tier 1 supports:
+# 📄 Resume Intelligence
 
-Resume upload
-Basic parsing (regex/NLP section detection)
-Skill extraction (deterministic)
+## Tier 1
 
-Tier 2 adds:
+The initial version supports:
 
-AI-based resume scoring
-AI-based resume analysis and suggestions
-Job-specific resume optimization
-text
+* Resume upload
+* Basic parsing
+* Regex/NLP section detection
+* Deterministic skill extraction
+
+## Tier 2
+
+Later versions can add:
+
+* AI resume scoring
+* AI resume analysis
+* AI-generated suggestions
+* Job-specific resume optimization
+
+### Resume Flow
+
+```text
 Resume
    ↓
 Skill Extraction
@@ -461,14 +738,22 @@ User Profile
    ↓
 Opportunity Matching
    ↓
-Skill Gap Analysis (Tier 2)
-📈 Skill-Gap Analysis (Tier 2)
+Skill Gap Analysis
+   ↓
+Learning Recommendations
+```
 
-When an internship is a strong match but has missing skills, InternAI Radar can identify those gaps once enough opportunity data exists to aggregate over.
+---
 
-Example:
+# 📈 Skill-Gap Analysis
 
-text
+**Tier 2**
+
+When an internship is a strong match but the user has missing skills, InternAI Radar can identify those gaps once enough opportunity data exists.
+
+### Example
+
+```text
 Target Role:
 Backend Engineering Intern
 
@@ -486,13 +771,21 @@ Recommended focus:
 1. Docker fundamentals
 2. Redis basics
 3. AWS deployment fundamentals
-📌 Application Tracking
+```
 
-InternAI Radar includes a dedicated application-management system from Tier 1.
+The purpose is not simply to reject opportunities because of missing skills.
 
-States:
+Instead, the system should help users understand **what they can improve**.
 
-text
+---
+
+# 📌 Application Tracking
+
+Application management is a Tier 1 feature.
+
+## Application States
+
+```text
 Saved
 Applied
 Assessment
@@ -500,38 +793,85 @@ Interview
 Rejected
 Offer
 Withdrawn
+```
 
-Application information includes:
+## Application Information
 
-Opportunity, company, application date, deadline
-Current status + status history (ApplicationEvent)
-Notes
-Interview information
-Outreach history (Tier 2, once Contact Intelligence exists)
-Application Kanban / Calendar (Tier 2 UI upgrades)
+Each application can contain:
 
-Kanban and calendar views are UI conveniences layered on top of the same underlying application data — built once the basic table/list view is solid.
+* Opportunity
+* Company
+* Application date
+* Deadline
+* Current status
+* Status history
+* Notes
+* Interview information
+* Outreach history — Tier 2
 
-👤 Contact Intelligence (Phase 2 Feature)
+The underlying application data can later power:
 
-InternAI Radar includes a Contact Intelligence layer, added only after the core discovery/matching/tracking loop is real and deployed — because it deals with personal contact data and needs extra care.
+* Kanban views
+* Calendar views
+* Application analytics
 
-The goal is not to scrape private information. The system works with:
+Kanban and calendar are UI layers over the same application-management system.
 
-Manual entry (Tier 2, built first) — user pastes in a contact they found themselves (e.g. a public team page)
-Legitimate paid contact-lookup APIs (e.g. Hunter.io/Apollo, via a registered API key under that provider's own ToS) — never scraping LinkedIn or people-search sites
+---
 
-Contact confidence is represented as:
+# 👤 Contact Intelligence
 
-text
+**Tier 2 / Phase 2 Feature**
+
+Contact Intelligence is added only after the core discovery → matching → tracking loop is working reliably.
+
+The purpose is **not to scrape private information**.
+
+The system can work with:
+
+### Manual Contact Entry
+
+The user provides a contact they found themselves, such as from a public professional/team page.
+
+### Legitimate Contact APIs
+
+Supported paid contact-lookup providers may be integrated through their official APIs and terms of service.
+
+Examples include:
+
+* Hunter.io
+* Apollo
+
+The system should never scrape LinkedIn or private people-search sources.
+
+---
+
+## Contact Confidence
+
+Contact information is represented with confidence levels:
+
+```text
 HIGH
 MEDIUM
 UNAVAILABLE
+```
 
-along with the source of the information — a contact is never shown without its source and confidence level.
+The source of the information should also be recorded.
 
-📧 Cold Outreach (Tier 2)
-text
+A contact should never be presented without:
+
+* Source
+* Confidence level
+
+---
+
+# 📧 Cold Outreach
+
+**Tier 2**
+
+The planned outreach workflow is:
+
+```text
 Opportunity Found
        ↓
 Saved
@@ -540,65 +880,106 @@ Applied
        ↓
 Contact Identified
        ↓
-Cold Email Drafted (AI-assisted)
+Cold Email Drafted
        ↓
 User Reviews
        ↓
-Email Sent (manually, by the user)
+Email Sent Manually
        ↓
 Follow-up
        ↓
 Response
+```
 
-The AI email drafter can use company, role, job description, candidate skills, and background — but it only ever produces a draft for user review. There is no auto-send.
+The AI email drafter can use:
 
-🔐 Responsible Contact Intelligence
+* Company
+* Role
+* Job description
+* Candidate skills
+* Candidate background
+
+The AI generates a **draft only**.
+
+> There is no automatic email sending.
+
+The user remains in control of the final message and sending process.
+
+---
+
+# 🔐 Responsible Contact Intelligence
 
 InternAI Radar explicitly avoids:
 
-Guessing private email addresses at scale
-Scraping private personal data or LinkedIn profiles
-CAPTCHA/authentication/rate-limit bypassing
-Unauthorized scraping
-Automated spam campaigns
-🔔 Notifications
+* Guessing private email addresses at scale
+* Scraping private personal information
+* Scraping LinkedIn profiles
+* CAPTCHA bypassing
+* Authentication bypassing
+* Rate-limit bypassing
+* Unauthorized scraping
+* Automated spam campaigns
 
-Tier 1 ships with one working channel: email. Telegram and push are Tier 2 additions, added only once email delivery is proven reliable.
+The system is designed around **responsible automation and user control**.
 
-🏗️ System Architecture
+---
 
-High-level target architecture (Redis/Celery/AI boxes apply once Tier 2 begins):
+# 🔔 Notifications
 
-text
-                         ┌───────────────────┐
-                         │     Next.js       │
-                         │    Frontend       │
-                         └─────────┬─────────┘
-                                   │
-                                   ▼
-                         ┌───────────────────┐
-                         │      FastAPI      │
-                         │       API         │
-                         └─────────┬─────────┘
-                                   │
-                  ┌────────────────┼────────────────┐
-                  │                │                │
-                  ▼                ▼                ▼
-             PostgreSQL      Redis (T2)        AI/LLM (T2)
-                  │                │                │
-                  │                ▼                │
-                  │        Background Jobs          │
-                  │      (cron in T1, Celery T2)     │
-                  │                │                │
-                  └────────────────┼────────────────┘
-                                   │
-                                   ▼
-                         Matching / Priority
-                                   │
-                                   ▼
-                            Notifications
-📁 Project Structure
-text
+Tier 1 includes:
+
+```text
+Email
+```
+
+Telegram and push notifications are planned for Tier 2.
+
+Additional channels will be added only after the email notification system is reliable.
+
+---
+
+# 🏗️ System Architecture
+
+The target architecture is:
+
+```text
+                    ┌───────────────────┐
+                    │     Next.js       │
+                    │    Frontend       │
+                    └─────────┬─────────┘
+                              │
+                              ▼
+                    ┌───────────────────┐
+                    │      FastAPI      │
+                    │       API         │
+                    └─────────┬─────────┘
+                              │
+              ┌───────────────┼────────────────┐
+              │               │                │
+              ▼               ▼                ▼
+        PostgreSQL       Redis (T2)        AI / LLM (T2)
+              │               │                │
+              │               ▼                │
+              │       Background Jobs          │
+              │       cron → T1                │
+              │       Celery → T2              │
+              │               │                │
+              └───────────────┼────────────────┘
+                              │
+                              ▼
+                    Matching / Priority
+                              │
+                              ▼
+                         Notifications
+```
+
+Redis, Celery, and AI components are introduced only when their corresponding development phases are reached.
+
+---
+
+# 📁 Project Structure
+
+```text
 InternAI-Radar/
 │
 ├── .github/
@@ -634,16 +1015,17 @@ InternAI-Radar/
 │   │   ├── schemas/
 │   │   ├── services/
 │   │   ├── ingestion/
-│   │   ├── ai/            (Tier 2)
-│   │   ├── priority/      (Tier 2)
+│   │   ├── ai/            # Tier 2
+│   │   ├── priority/      # Tier 2
 │   │   ├── notifications/
-│   │   ├── workers/       (Tier 2 — Celery; Tier 1 uses a cron script)
+│   │   ├── workers/       # Tier 2
 │   │   ├── security/
 │   │   ├── utils/
 │   │   └── tests/
+│   │
 │   └── scripts/
 │
-├── worker/                (Tier 2 — only if a standalone worker process is needed)
+├── worker/                # Tier 2 if required
 ├── infrastructure/
 ├── tests/
 ├── scripts/
@@ -655,55 +1037,90 @@ InternAI-Radar/
 ├── CHANGELOG.md
 ├── LICENSE
 └── README.md
+```
 
-The repository is fully scaffolded (see setup_structure.sh), but Tier 2 folders remain empty until their phase is reached — an empty folder is a placeholder, not a shipped feature.
+Tier 2 directories may remain empty during earlier development phases.
 
-🛠️ Technology Stack
+An empty directory is a **placeholder**, not a shipped feature.
 
-Per the project's engineering principle of resume/documentation honesty: this table separates what Tier 1 (MVP) actually requires from what Tier 2 will add. Nothing here is claimed as "in use" until it's actually wired up and tested.
+---
 
-Frontend
-Technology	Tier	Notes
-Next.js	T1	App Router
-React	T1	
-TypeScript	T1	
-Tailwind CSS	T1	
-Backend
-Technology	Tier	Notes
-Python	T1	
-FastAPI	T1	
-Pydantic	T1	
-SQLAlchemy	T1	
-Database
-Technology	Tier	Notes
-PostgreSQL	T1	
-Alembic	T1	migrations
-Caching / Queues
-Technology	Tier	Notes
-Redis	T2	only introduced if a real caching/queueing bottleneck justifies it
-Background Processing
-Technology	Tier	Notes
-Cron / scheduled script	T1	sufficient at MVP ingestion volume
-Celery + worker service	T2	added only if concurrency/scale genuinely requires it
-AI
-Technology	Tier	Notes
-LLM API (provider TBD)	T2	used for job/resume analysis, skill-gap, cold-email drafting — with a documented manual eval set
-NLP libraries (e.g. regex/spaCy-style extraction)	T1	basic resume/job section & skill extraction, no LLM needed
-Embeddings / semantic matching	T2	only if genuinely needed once fuzzy dedup/matching requires it
-Contact Intelligence
-Technology	Tier	Notes
-Manual contact entry	T2	no external API dependency
-Paid contact-lookup API (e.g. Hunter.io/Apollo)	T2	via provider's own ToS-compliant API key; never scraped
-Infrastructure
-Technology	Tier	Notes
-Docker / Docker Compose	T1	
-Nginx	T2	added at production deployment hardening
-GitHub Actions (CI/CD)	T1 (basic) / T2 (full matrix)	
+# 🛠️ Technology Stack
 
-Rule followed throughout: a technology is only listed as "in use" once it's actually implemented, tested, and deployed — see Engineering Principles below. A final "as-built" stack table will replace this one at project completion.
+The project separates technologies into Tier 1 and Tier 2 to maintain documentation and resume honesty.
 
-🔄 Internship Ingestion Pipeline
-text
+## Frontend
+
+| Technology   | Tier | Purpose     |
+| ------------ | ---- | ----------- |
+| Next.js      | T1   | App Router  |
+| React        | T1   | UI          |
+| TypeScript   | T1   | Type safety |
+| Tailwind CSS | T1   | Styling     |
+
+## Backend
+
+| Technology | Tier | Purpose          |
+| ---------- | ---- | ---------------- |
+| Python     | T1   | Backend language |
+| FastAPI    | T1   | API framework    |
+| Pydantic   | T1   | Validation       |
+| SQLAlchemy | T1   | ORM              |
+
+## Database
+
+| Technology | Tier | Purpose             |
+| ---------- | ---- | ------------------- |
+| PostgreSQL | T1   | Primary database    |
+| Alembic    | T1   | Database migrations |
+
+## Caching / Queues
+
+| Technology | Tier | Purpose                              |
+| ---------- | ---- | ------------------------------------ |
+| Redis      | T2   | Cache / queue if justified           |
+| Celery     | T2   | Background workers if scale requires |
+
+## Background Processing
+
+| Technology              | Tier | Purpose                     |
+| ----------------------- | ---- | --------------------------- |
+| Cron / Scheduled Script | T1   | Scheduled ingestion         |
+| Celery + Worker         | T2   | High-concurrency processing |
+
+## AI
+
+| Technology  | Tier | Purpose                         |
+| ----------- | ---- | ------------------------------- |
+| NLP / Regex | T1   | Basic extraction                |
+| LLM API     | T2   | Job/resume analysis             |
+| Embeddings  | T2   | Semantic matching/deduplication |
+
+## Contact Intelligence
+
+| Technology           | Tier | Purpose                   |
+| -------------------- | ---- | ------------------------- |
+| Manual Contact Entry | T2   | User-provided contacts    |
+| Paid Contact API     | T2   | Legitimate contact lookup |
+
+## Infrastructure
+
+| Technology     | Tier  | Purpose              |
+| -------------- | ----- | -------------------- |
+| Docker         | T1    | Containerization     |
+| Docker Compose | T1    | Local development    |
+| Nginx          | T2    | Production hardening |
+| GitHub Actions | T1/T2 | CI/CD                |
+
+> A technology is only considered **"in use"** after it has been implemented, tested, and deployed.
+
+---
+
+# 🔄 Internship Ingestion Pipeline
+
+The ingestion system follows a modular pipeline:
+
+```text
 Source
   ↓
 Adapter
@@ -723,57 +1140,159 @@ Deduplicator
 Processor
   ↓
 Database
+```
 
-Each source has its own adapter, so adding a future source doesn't require touching the rest of the pipeline:
+Each source has its own adapter.
 
-text
+Example:
+
+```text
 source_001/
 ├── adapter.py
 ├── client.py
 ├── parser.py
 └── mapper.py
-📜 Data Source Compliance
+```
 
-Before any source is integrated, its access method, ToS, rate limits, and redistribution restrictions are checked and documented under docs/sources/. Publicly visible data does not automatically mean unrestricted scraping or redistribution is permitted. Where a source can't be legally or technically integrated, the limitation is documented and a different, permitted source is used instead — access controls, CAPTCHAs, and rate limits are never bypassed.
+This allows new sources to be added without rewriting the rest of the ingestion system.
 
-🔁 Deduplication
+---
+
+# 📜 Data Source Compliance
+
+Before integrating a source, the project checks:
+
+* Access method
+* Terms of service
+* Rate limits
+* Redistribution restrictions
+* Technical limitations
+
+Documentation for sources is maintained under:
+
+```text
+docs/sources/
+```
+
+Publicly visible data does not automatically mean unrestricted scraping or redistribution is permitted.
+
+If a source cannot be legally or technically integrated, the limitation is documented and another permitted source is used.
+
+The system never bypasses:
+
+* Authentication
+* CAPTCHA
+* Rate limits
+* Access controls
+
+---
+
+# 🔁 Deduplication
+
+The goal is to avoid displaying the same opportunity multiple times.
 
 Instead of:
 
-text
+```text
 Google SWE Intern
 Google SWE Intern
 Google SWE Intern
+```
 
-the system represents:
+the platform aims to represent:
 
-text
+```text
 Google Software Engineering Intern
+
 Found on 2 sources
+```
 
-Tier 1 uses exact-match deduplication (same source job ID / canonical URL). Fuzzy/semantic deduplication is a Tier 2 addition once more sources are added and near-duplicate noise becomes a real problem.
+## Tier 1
 
-🗄️ Database
+Exact-match deduplication based on:
 
-Models across major domains:
+* Source job ID
+* Canonical URL
 
-text
-User, Profile, Education, Skill, Resume
-Company, Opportunity, OpportunitySource, OpportunitySkill
-Match, Application, ApplicationEvent
-Contact, Watchlist, SavedSearch          (Tier 2 entities)
-Notification, SavedOpportunity
-AuditLog, SourceHealth                    (Tier 2)
+## Tier 2
 
-Documented under docs/database/ (schema, relationships, indexes, migrations).
+Later additions:
 
-⚙️ Background Processing
+* Fuzzy matching
+* Semantic matching
 
-Tier 1: a single scheduled script (cron) runs the ingestion pipeline periodically — no queue infrastructure needed at this scale.
+This keeps the MVP simple and reliable.
 
-Tier 2, if justified by real load:
+---
 
-text
+# 🗄️ Database
+
+Major database domains include:
+
+```text
+User
+Profile
+Education
+Skill
+Resume
+
+Company
+Opportunity
+OpportunitySource
+OpportunitySkill
+
+Match
+Application
+ApplicationEvent
+
+Notification
+SavedOpportunity
+
+Contact                  # Tier 2
+Watchlist                # Tier 2
+SavedSearch              # Tier 2
+AuditLog                 # Tier 2
+SourceHealth             # Tier 2
+```
+
+Database documentation is maintained under:
+
+```text
+docs/database/
+```
+
+including:
+
+* Schema
+* Relationships
+* Indexes
+* Migrations
+
+---
+
+# ⚙️ Background Processing
+
+## Tier 1
+
+A scheduled script runs the ingestion pipeline periodically.
+
+```text
+Cron
+  ↓
+Ingestion Pipeline
+  ↓
+Processing
+  ↓
+PostgreSQL
+```
+
+No queue infrastructure is required at MVP scale.
+
+## Tier 2
+
+If actual load justifies it:
+
+```text
 FastAPI
    │
    ▼
@@ -788,269 +1307,966 @@ Celery Worker
    ├── Matching
    ├── Contacts
    └── Notifications
-🔒 Security & Responsible Automation
+```
 
-Dedicated security modules exist for permissions, rate limiting, file validation, sanitization, and audit logging (the last two deepen in the Tier 2 hardening pass).
+This architecture is introduced only when needed.
 
-Never commit:
+---
 
-text
-.env, API keys, passwords, database credentials, private tokens, secret keys
+# 🔒 Security & Responsible Automation
 
-Use .env.example to document required configuration.
+The system considers:
 
-🧪 Testing
-Tier 1 (build now)
-Unit tests: normalizer, deduplicator, matcher/scoring, validators
-API tests: auth, CRUD, error cases
-One E2E test of the full core journey: register → resume → opportunity → match → save → apply → track
-Tier 2 (expand later)
-Ingestion adapter integration tests per new source
-AI evaluation tests (manual eval sets)
-Full frontend unit/integration suite
-Contact intelligence E2E flow
-📚 Documentation
+* Authentication
+* Authorization
+* Permissions
+* Rate limiting
+* File validation
+* Sanitization
+* Audit logging
 
-Maintained under docs/ — architecture, API, database, AI, sources, deployment, and ADRs. Documentation describes the system that actually exists; Tier 2 docs are written when Tier 2 is built, not before.
+Sensitive values must never be committed.
 
-🚀 Local Development
-1. Clone the repository
-bash
+## Never Commit
+
+```text
+.env
+API keys
+Passwords
+Database credentials
+Private tokens
+Secret keys
+```
+
+Use:
+
+```text
+.env.example
+```
+
+to document required configuration.
+
+---
+
+# 🧪 Testing
+
+## Tier 1
+
+### Unit Tests
+
+Test important deterministic components:
+
+* Normalizer
+* Deduplicator
+* Matcher
+* Scoring logic
+* Validators
+
+### API Tests
+
+Cover:
+
+* Authentication
+* CRUD operations
+* Error cases
+* Validation failures
+
+### E2E
+
+The core journey should eventually be covered:
+
+```text
+Register
+   ↓
+Resume
+   ↓
+Opportunity
+   ↓
+Match
+   ↓
+Save
+   ↓
+Apply
+   ↓
+Track
+```
+
+## Tier 2
+
+Additional testing includes:
+
+* Ingestion adapter integration tests
+* AI evaluation tests
+* Frontend unit tests
+* Frontend integration tests
+* Contact Intelligence E2E flow
+
+---
+
+# 📚 Documentation
+
+Documentation is maintained under:
+
+```text
+docs/
+```
+
+with sections for:
+
+```text
+architecture/
+api/
+database/
+ai/
+sources/
+deployment/
+decisions/
+```
+
+The documentation follows the same principle as the code:
+
+> **Document what actually exists.**
+
+Tier 2 documentation is written as Tier 2 functionality is implemented rather than falsely presenting planned features as completed functionality.
+
+---
+
+# 🚀 Local Development
+
+## 1. Clone the Repository
+
+```bash
 git clone https://github.com/sankalp-tripath12/InternAI-Radar.git
 cd InternAI-Radar
-2. Configure environment variables
-bash
+```
+
+---
+
+## 2. Configure Environment Variables
+
+### Frontend
+
+```bash
 cp frontend/.env.example frontend/.env.local
+```
+
+### Backend
+
+```bash
 cp backend/.env.example backend/.env
-🐍 Backend Setup
-bash
+```
+
+Never commit the generated `.env` files.
+
+---
+
+# 🐍 Backend Setup
+
+Create a Python virtual environment:
+
+```bash
 python -m venv .venv
+```
+
+Activate it:
+
+```bash
 source .venv/bin/activate
+```
+
+Install backend dependencies:
+
+```bash
 pip install -r backend/requirements.txt
+```
 
-Run the FastAPI application per the project's development configuration.
+Run the FastAPI application according to the project's development configuration.
 
-⚛️ Frontend Setup
-bash
+---
+
+# ⚛️ Frontend Setup
+
+Move into the frontend:
+
+```bash
 cd frontend
+```
+
+Install dependencies:
+
+```bash
 npm install
+```
+
+Start the development server:
+
+```bash
 npm run dev
-🐘 Database & Migrations
-bash
+```
+
+---
+
+# 🔐 Environment Variables
+
+## Root
+
+The root `.env.example` explains that each service maintains its own environment configuration.
+
+```text
+backend/.env.example
+frontend/.env.example
+```
+
+Real secrets should never be stored in the root README or committed environment files.
+
+---
+
+## Backend Environment
+
+Example configuration:
+
+```env
+APP_NAME=InternAI Radar
+APP_ENV=development
+DEBUG=true
+
+DATABASE_URL=postgresql+asyncpg://internai:internai_dev_password@localhost:5432/internai_radar
+
+REDIS_URL=redis://localhost:6379/0
+
+JWT_SECRET=replace_this_with_a_real_random_secret
+JWT_ALGORITHM=HS256
+ACCESS_TOKEN_EXPIRE_MINUTES=60
+
+FRONTEND_ORIGIN=http://localhost:3000
+
+OPENAI_API_KEY=
+
+SMTP_HOST=
+SMTP_PORT=587
+SMTP_USER=
+SMTP_PASSWORD=
+```
+
+Redis and OpenAI are placeholders for Tier 2 until their implementation phase is reached.
+
+---
+
+## Frontend Environment
+
+```env
+NEXT_PUBLIC_API_BASE_URL=http://localhost:8000/api/v1
+```
+
+---
+
+# 🐘 Database & Migrations
+
+Database migrations use **Alembic**.
+
+Create a migration:
+
+```bash
 alembic revision --autogenerate -m "migration message"
+```
+
+Apply migrations:
+
+```bash
 alembic upgrade head
+```
 
-Documented under docs/database/.
+Database documentation is maintained under:
 
-🐳 Docker
-text
+```text
+docs/database/
+```
+
+---
+
+# 🐳 Docker
+
+Infrastructure Docker files are organized as:
+
+```text
 infrastructure/docker/
+
 ├── frontend.Dockerfile
 ├── backend.Dockerfile
-└── worker.Dockerfile   (Tier 2)
+└── worker.Dockerfile
+```
 
-Plus a root docker-compose.yml (Postgres + backend + frontend for Tier 1; Redis/worker added in Tier 2) for reproducible local dev and deployment.
+The worker Dockerfile is a Tier 2 component.
 
-🔌 API
+The root project contains:
 
-Organized under backend/app/api/v1/:
+```text
+docker-compose.yml
+```
 
-text
-auth, users, profiles, resumes, opportunities, matching, applications   (Tier 1)
-contacts, notifications, analytics, admin                              (T1 notifications basic / rest Tier 2)
+Tier 1 Docker Compose is intended to support:
 
-Documented under docs/api/.
+* PostgreSQL
+* Backend
+* Frontend
 
-📊 Analytics (Tier 2)
+Tier 2 can add:
 
-Once enough application data exists:
+* Redis
+* Worker services
 
-text
+The goal is reproducible local development and deployment.
+
+---
+
+# 🔌 API
+
+Backend API routes are organized under:
+
+```text
+backend/app/api/v1/
+```
+
+Tier 1 APIs include:
+
+```text
+auth
+users
+profiles
+resumes
+opportunities
+matching
+applications
+```
+
+Notifications begin as a Tier 1 capability.
+
+Tier 2 can add:
+
+```text
+contacts
+analytics
+admin
+```
+
+API documentation is maintained under:
+
+```text
+docs/api/
+```
+
+---
+
+# 📊 Analytics
+
+**Tier 2**
+
+Once sufficient real application data exists, the system can calculate metrics such as:
+
+```text
 Applications: 40
-Interviews:   8
-Offers:       2
+Interviews:    8
+Offers:        2
 
 Interview Rate: 20%
 Offer Rate:      5%
+```
 
-Only real, measured numbers — never invented metrics.
+Only real, measured numbers should be displayed.
 
-🩺 Source Health (Tier 2)
+> **Never invent project metrics.**
 
-Once multiple sources exist, source-health monitoring tracks availability, collection/processing failures, and last successful ingestion — so failures are visible instead of silently losing opportunities.
+---
 
-🌐 Deployment
-text
-Frontend  → Next.js hosting
-Backend   → FastAPI hosting
-Database  → Managed PostgreSQL
-Cache     → Managed Redis (Tier 2, if used)
-Workers   → Worker infra (Tier 2, if used)
-Proxy     → Nginx (Tier 2)
+# 🩺 Source Health
 
-Documented under docs/deployment/.
+**Tier 2**
 
-🔄 CI/CD
-text
+Once multiple sources are integrated, source-health monitoring can track:
+
+* Source availability
+* Collection failures
+* Processing failures
+* Last successful ingestion
+* Source-specific issues
+
+This ensures that a broken source does not silently cause opportunities to disappear.
+
+---
+
+# 🌐 Deployment
+
+The target deployment architecture is:
+
+```text
+Frontend
+   ↓
+Next.js Hosting
+
+Backend
+   ↓
+FastAPI Hosting
+
+Database
+   ↓
+Managed PostgreSQL
+
+Cache
+   ↓
+Managed Redis
+(Tier 2)
+
+Workers
+   ↓
+Worker Infrastructure
+(Tier 2)
+
+Proxy
+   ↓
+Nginx
+(Tier 2)
+```
+
+Deployment documentation is maintained under:
+
+```text
+docs/deployment/
+```
+
+---
+
+# 🔄 CI/CD
+
+GitHub Actions workflows are organized under:
+
+```text
 .github/workflows/
-├── ci.yml         (T1 — lint + test on every push)
-├── frontend.yml   (T1)
-├── backend.yml    (T1)
-├── worker.yml     (T2)
-└── security.yml   (T2)
-🗺️ Development Roadmap
-Phase 1 — Foundation (current status: scaffold only, not yet implemented)
- Repository created
- Monorepo folder structure scaffolded
- Git configured
- Environment configuration filled in
- Docker development environment working end-to-end
-Phase 2 — Backend Foundation (Tier 1)
- FastAPI application running
- PostgreSQL connection
- SQLAlchemy models
- Alembic migrations
- Authentication (register/login/logout, hashed passwords)
- User profiles
-Phase 3 — Internship Intelligence (Tier 1)
- Source adapter architecture
- 2–3 real, permitted internship sources
- Collector → Parser → Normalizer → Validator → Deduplicator (exact-match)
- Opportunity database populated with real data
-Phase 4 — Matching & Dashboard (Tier 1)
- Rule-based, explainable matching engine
- Opportunity dashboard (search/filter/sort/pagination)
- Resume upload + basic parsing
-Phase 5 — Application Tracking & Alerts (Tier 1)
- Save opportunities
- Application tracker + timeline
- Email notifications
- Cron-based scheduled ingestion
-🎯 Tier 1 / MVP complete when Phases 1–5 are deployed, tested, and demoable end-to-end.
-Phase 6 — Multi-Source & AI Intelligence (Tier 2)
- Additional sources + fuzzy/semantic deduplication + source health
- AI job analysis, skill extraction, resume analysis (with manual eval set)
- Semantic matching & match explanations
- Skill-gap analysis
-Phase 7 — Priority, Kanban & Analytics (Tier 2)
- Priority scoring (freshness + deadline)
- Kanban board & application calendar
- Application/source analytics
- Watchlists & saved searches
-Phase 8 — Contact Intelligence & Outreach (Tier 2)
- Manual contact entry
- Paid contact-lookup API integration (Hunter.io/Apollo)
- AI cold-email drafting (review-before-send only)
- Outreach & follow-up tracking
-Phase 9 — Production Hardening (Tier 2)
- Telegram/push notifications
- Security hardening pass
- Performance pass
- Full CI/CD matrix, monitoring, logging, metrics
- Production deployment verified end-to-end
-🧭 Recommended MVP (Tier 1, in full)
-text
+
+├── ci.yml
+├── frontend.yml
+├── backend.yml
+├── worker.yml
+└── security.yml
+```
+
+## Tier 1
+
+```text
+ci.yml
+frontend.yml
+backend.yml
+```
+
+Basic CI should run linting and tests on every push.
+
+## Tier 2
+
+```text
+worker.yml
+security.yml
+```
+
+Additional production and security automation can be introduced later.
+
+---
+
+# 🗺️ Development Roadmap
+
+## Phase 1 — Foundation
+
+**Current Status: Scaffolded**
+
+* Repository created
+* Monorepo structure scaffolded
+* Git configured
+* Environment configuration created
+* Docker development environment
+
+---
+
+## Phase 2 — Backend Foundation
+
+**Tier 1**
+
+* FastAPI application
+* PostgreSQL connection
+* SQLAlchemy models
+* Alembic migrations
+* Authentication
+* Password hashing
+* User profiles
+
+---
+
+## Phase 3 — Internship Intelligence
+
+**Tier 1**
+
+* Source adapter architecture
+* 2–3 real permitted sources
+* Collector
+* Parser
+* Normalizer
+* Validator
+* Exact-match deduplication
+* Opportunity database populated with real data
+
+---
+
+## Phase 4 — Matching & Dashboard
+
+**Tier 1**
+
+* Rule-based matching engine
+* Explainable scoring
+* Opportunity dashboard
+* Search
+* Filtering
+* Sorting
+* Pagination
+* Resume upload
+* Basic resume parsing
+
+---
+
+## Phase 5 — Application Tracking & Alerts
+
+**Tier 1**
+
+* Save opportunities
+* Application tracker
+* Application timeline
+* Email notifications
+* Cron-based scheduled ingestion
+
+> **Tier 1 / MVP is complete when Phases 1–5 are deployed, tested, and demoable end-to-end.**
+
+---
+
+## Phase 6 — Multi-Source & AI Intelligence
+
+**Tier 2**
+
+* Additional sources
+* Fuzzy deduplication
+* Semantic deduplication
+* Source health
+* AI job analysis
+* Skill extraction
+* Resume analysis
+* Semantic matching
+* Match explanations
+* Skill-gap analysis
+
+---
+
+## Phase 7 — Priority, Kanban & Analytics
+
+**Tier 2**
+
+* Priority scoring
+* Freshness scoring
+* Deadline scoring
+* Kanban board
+* Application calendar
+* Application analytics
+* Source analytics
+* Watchlists
+* Saved searches
+
+---
+
+## Phase 8 — Contact Intelligence & Outreach
+
+**Tier 2**
+
+* Manual contact entry
+* Legitimate paid contact lookup APIs
+* AI cold-email drafting
+* Review-before-send workflow
+* Outreach tracking
+* Follow-up tracking
+
+---
+
+## Phase 9 — Production Hardening
+
+**Tier 2**
+
+* Telegram notifications
+* Push notifications
+* Security hardening
+* Performance optimization
+* Full CI/CD matrix
+* Monitoring
+* Logging
+* Metrics
+* Production deployment verification
+
+---
+
+# 🧭 Recommended MVP
+
+The recommended Tier 1 MVP is:
+
+```text
 AUTH + PROFILE
-        ↓
-RESUME UPLOAD (basic parsing)
-        ↓
-2–3 REAL SOURCES → COLLECT → NORMALIZE → VALIDATE → DEDUPLICATE
-        ↓
+       ↓
+RESUME UPLOAD
+(Basic Parsing)
+       ↓
+2–3 REAL SOURCES
+       ↓
+COLLECT
+       ↓
+NORMALIZE
+       ↓
+VALIDATE
+       ↓
+DEDUPLICATE
+       ↓
 POSTGRES
-        ↓
+       ↓
 FASTAPI
-        ↓
-RULE-BASED EXPLAINABLE MATCHING
-        ↓
-NEXT.JS DASHBOARD (real internships, real match scores)
-        ↓
+       ↓
+RULE-BASED
+EXPLAINABLE MATCHING
+       ↓
+NEXT.JS DASHBOARD
+       ↓
+REAL INTERNSHIPS
++ REAL MATCH SCORES
+       ↓
 SAVE / OPEN ORIGINAL APPLICATION
-        ↓
+       ↓
 APPLICATION TRACKER
-        ↓
+       ↓
 EMAIL ALERT ON NEW MATCH
+```
 
-Once this works reliably end-to-end and is deployed, AI matching, more sources, contact intelligence, and analytics are layered on top — not before.
+The principle is:
 
-🧠 Engineering Principles
-Real data over fake demos — genuine internship data and real application URLs; test data is clearly separated from production data.
-Explainable AI/matching — the user should always know why they got a given score, from the Tier 1 rule-based version onward.
-Source transparency — every opportunity preserves source information where possible.
-Responsible automation — especially for contact discovery, email generation, and outreach; user review stays in the loop, no auto-send.
-Modular architecture — source adapters, AI providers, and notification providers stay replaceable.
-Security by design — authentication, authorization, validation, sanitization, rate limiting, and auditing considered from the beginning, not bolted on.
-Production-minded development — testing, monitoring, logging, CI/CD, and documentation are part of "done," not an afterthought.
-Tiered, incremental scope — Tier 1 (MVP) is fully built, tested, and deployed before Tier 2 work starts. No feature is claimed as working until it demonstrably is.
-🏆 Why InternAI Radar?
+> **Build the core loop first.**
 
-Traditional internship platforms answer:
+Only after the core system works reliably end-to-end should the following be layered on:
 
-"What internships exist?"
+* AI matching
+* More sources
+* Contact Intelligence
+* Analytics
+* Advanced notifications
 
-InternAI Radar aims to answer a more useful set of questions:
+---
 
-"What internships were discovered early?" "Which ones are relevant to me?" "Am I eligible?" "Why is this a good match?" "What skills am I missing?" "Should I prioritize this opportunity?" "Where do I apply?" "What did I already apply to?" "How is my internship search performing?"
+# 🧠 Engineering Principles
 
-That's the difference between an internship listing platform and an internship intelligence system.
+## 1. Real Data Over Fake Demos
 
-👨‍💻 Project Status
+Use genuine internship data and real application URLs.
 
-Status: 🚧 Active Development — repository scaffolded (folder structure only); Tier 1 implementation in progress.
+Test data must remain clearly separated from production data.
 
-🤝 Contributing
-Read CONTRIBUTING.md
-Check existing issues
-Create a focused branch
-Make the change
-Add/update tests where appropriate
-Submit a pull request
-🔐 Security
+---
 
-Follow the responsible disclosure process in SECURITY.md. Do not publicly expose sensitive credentials, API keys, personal data, or vulnerabilities.
+## 2. Explainable Matching
 
-📜 License
+Users should always understand why they received a particular score.
 
-See LICENSE.
+This starts with the Tier 1 rule-based engine.
 
-👨‍💻 Author
+---
 
-Sankalp Tripathi Computer Science & AI Student — Software Engineering, AI/ML, Full-Stack Development, DSA, MLOps, Open Source
+## 3. Source Transparency
 
-⭐ Project Vision
+Every opportunity should preserve source information wherever possible.
 
-InternAI Radar moves a student from:
+---
 
-text
-"I am searching for internships."
+## 4. Responsible Automation
 
-to:
+Especially for:
 
-text
-"I know which opportunities matter, why they matter, when to apply,
-how strong my profile is, what I should improve, and where I stand
-in the application process — and, later, who I can legitimately contact."
-InternAI Radar
+* Contact discovery
+* Email generation
+* Outreach
 
-Discover earlier. Match smarter. Apply strategically.
+the user remains in control.
 
-🚀
+There is no automatic email sending.
 
+---
 
-## 👨‍💻 Author
+## 5. Modular Architecture
+
+The architecture should keep the following replaceable:
+
+* Source adapters
+* AI providers
+* Notification providers
+
+---
+
+## 6. Security by Design
+
+Security should be considered from the beginning:
+
+* Authentication
+* Authorization
+* Validation
+* Sanitization
+* Rate limiting
+* Auditing
+
+---
+
+## 7. Production-Minded Development
+
+"Done" means more than writing code.
+
+The project considers:
+
+* Testing
+* Monitoring
+* Logging
+* CI/CD
+* Documentation
+* Deployment
+
+---
+
+## 8. Tiered, Incremental Scope
+
+Tier 1 must be:
+
+```text
+Built
+   ↓
+Tested
+   ↓
+Deployed
+   ↓
+Verified
+```
+
+before Tier 2 begins.
+
+> **No feature is claimed as working until it demonstrably is.**
+
+---
+
+# 🏆 Why InternAI Radar?
+
+Traditional internship platforms mainly answer:
+
+> **"What internships exist?"**
+
+InternAI Radar aims to answer a much more useful set of questions:
+
+* What internships were discovered early?
+* Which opportunities are relevant to me?
+* Am I eligible?
+* Why is this a good match?
+* What skills am I missing?
+* Should I prioritize this opportunity?
+* Where do I apply?
+* What have I already applied to?
+* How is my internship search performing?
+
+That is the difference between:
+
+```text
+Internship Listing Platform
+```
+
+and:
+
+```text
+Internship Intelligence System
+```
+
+---
+
+# 👨‍💻 Project Status
+
+```text
+🚧 Active Development
+```
+
+Current status:
+
+* Repository scaffolded
+* Project structure created
+* Git configured
+* Tier 1 implementation in progress
+
+The project is being developed incrementally with a focus on **real functionality rather than feature claims**.
+
+---
+
+# 🤝 Contributing
+
+Contributions are welcome.
+
+Before contributing:
+
+1. Read `CONTRIBUTING.md`
+2. Check existing issues
+3. Create a focused branch
+4. Make the change
+5. Add or update tests where appropriate
+6. Submit a pull request
+
+Keep contributions focused, tested, and consistent with the project's architecture.
+
+---
+
+# 🔐 Security
+
+Please follow the responsible disclosure process described in:
+
+```text
+SECURITY.md
+```
+
+Do not publicly expose:
+
+* API keys
+* Passwords
+* Database credentials
+* Private tokens
+* Personal data
+* Security vulnerabilities
+
+If you discover a security issue, report it responsibly rather than publicly exposing the vulnerability.
+
+---
+
+# 📜 License
+
+See:
+
+```text
+LICENSE
+```
+
+for licensing information.
+
+---
+
+# 👨‍💻 Author
 
 **Sankalp Tripathi**
 Computer Science & AI Student
 
-**Focus:** Full-Stack Development • AI/ML • Software Engineering • DSA • MLOps • Open Source
+### Focus Areas
+
+* Full-Stack Development
+* AI/ML Engineering
+* Software Engineering
+* Data Structures & Algorithms
+* MLOps
+* Open Source
 
 ---
 
-## 🌟 Vision
+# 🌟 Project Vision
 
-Building **InternAI Radar** to help students **discover internships earlier, match smarter, and apply strategically.**
+**InternAI Radar** is being built to help technical students discover relevant internship opportunities earlier, understand their fit, and manage their application journey effectively.
 
-### 🚀 Roadmap
+### Core Vision
 
-More sources • Better matching • AI resume analysis • Alerts • Analytics • Career Intelligence
+```text
+Discover
+   ↓
+Analyze
+   ↓
+Match
+   ↓
+Alert
+   ↓
+Apply
+   ↓
+Track
+   ↓
+Improve
+```
+
+The long-term goal is to evolve InternAI Radar from an internship discovery platform into an **AI-powered career intelligence platform**.
+
+The system should help students move from:
+
+> **"I am searching for internships."**
+
+to:
+
+> **"I know which opportunities matter, why they matter, when to apply, what I should improve, and where I stand in the application process."**
+
+---
+
+# 🚀 Future Roadmap
+
+Planned improvements include:
+
+* More internship sources
+* Improved opportunity deduplication
+* Personalized opportunity matching
+* AI-powered job analysis
+* AI-powered resume analysis
+* Skill-gap analysis
+* Early application alerts
+* Application analytics
+* Watchlists
+* Saved searches
+* Contact Intelligence
+* AI-assisted cold-email drafting
+* Outreach tracking
+* Follow-up tracking
+* Career intelligence
+* Production monitoring
+* Performance optimization
+
+Advanced capabilities will be introduced only after the core:
+
+```text
+Discovery
+   ↓
+Matching
+   ↓
+Application Tracking
+```
+
+workflow is working reliably.
+
+---
+
+# 🎯 Final Goal
+
+InternAI Radar is not intended to be just another internship listing website.
+
+The goal is to build a system that helps students:
+
+```text
+Discover earlier
+      ↓
+Understand better
+      ↓
+Match smarter
+      ↓
+Apply strategically
+      ↓
+Track progress
+      ↓
+Identify skill gaps
+      ↓
+Improve continuously
+```
+
+---
+
+## 🚀 InternAI Radar
 
 > **Discover earlier. Match smarter. Apply strategically.**
+
+Built as a practical engineering project combining:
+
+**Full-Stack Development • AI/ML • Software Engineering • System Design • DSA • MLOps • Responsible Automation**
