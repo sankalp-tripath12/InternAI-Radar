@@ -12,6 +12,10 @@ from alembic import context
 # add later must be imported here too, or Alembic won't know about it.
 from app.models.base import Base
 from app.models.user import User  # noqa: F401
+from app.models.profile import Profile  # noqa: F401
+from app.models.education import Education  # noqa: F401
+from app.models.skill import Skill, user_skills  # noqa: F401
+from app.models.resume import Resume  # noqa: F401
 
 from app.config.settings import settings
 
