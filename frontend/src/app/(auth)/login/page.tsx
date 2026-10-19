@@ -1,12 +1,13 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
+  const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const [success, setSuccess] = useState(false);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -26,12 +27,9 @@ export default function LoginPage() {
 
     const data = await res.json();
     localStorage.setItem("token", data.access_token);
-    setSuccess(true);
+    router.push("/dashboard");
   }
 
-  if (success) {
-    return <p>Logged in.</p>;
-  }
 
   return (
     <form onSubmit={handleSubmit}>

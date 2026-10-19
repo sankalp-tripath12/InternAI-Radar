@@ -42,3 +42,8 @@ frontend:
 
 health:
 	curl http://localhost:8000/health
+
+dev: db-up backend
+	cd frontend && nohup npm run dev > next.log 2>&1 &
+	@sleep 4
+	@echo "Frontend: http://localhost:3000  Backend: http://localhost:8000"
