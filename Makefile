@@ -27,9 +27,10 @@ db-reset:
 
 backend:
 	@lsof -ti :8000 | xargs kill 2>/dev/null || true
-	cd backend && nohup .venv/bin/uvicorn app.main:app --reload --reload-dir app --reload-exclude '.venv/*' --port 8000 > uvicorn.log 2>&1 &
-	@sleep 2
-	@cat backend/uvicorn.log
+	@sleep 1
+	cd backend && nohup .venv/bin/python3.13 -m uvicorn app.main:app --reload --reload-dir app --reload-exclude '.venv/*' --port 8000 > uvicorn.log 2>&1 &
+	@sleep 3
+	@tail -3 backend/uvicorn.log
 
 backend-stop:
 	@lsof -ti :8000 | xargs kill 2>/dev/null || true
